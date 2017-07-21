@@ -43,7 +43,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(function(req, res, next) { //Gobal variable for viewing use
+app.use(function(req, res, next) { //Gobal variable for view template use
     res.locals.login = req.isAuthenticated();
     res.locals.session = req.session;
     next();

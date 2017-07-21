@@ -16,7 +16,7 @@ router.get('/', function (req, res, next) {
     });
 });
 
-/* Get shopping cart page */
+/* Get add to cart page */
 router.get('/add-to-cart/:id', function(req, res, next) {
     var productId = req.params.id;
     var cart = new Cart(req.session.cart ? req.session.cart : {});
@@ -31,5 +31,14 @@ router.get('/add-to-cart/:id', function(req, res, next) {
       res.redirect('/');
     });
 });
+
+/* Get shopping-cart page */
+router.get('/shopping-cart', function(req, res, next) {
+  if(!req.session.cart) { //If nothing in session
+    return res.render('shop/shopping-cart', {products: null});
+  }
+  var cart = new Cart(req.session.cart); //If something in session, passing data of session to shopping-cart page
+  res.render('shop/shopping-cart', {products: cart.generateArray(), totalPrice: cart.totalPrice})
+})
 
 module.exports = router;
