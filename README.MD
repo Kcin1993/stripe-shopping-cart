@@ -15,6 +15,10 @@ If you want to import the seed data to the local mongodb.
 cd seed && node product-seeder.js
 ```
 
+### Stripe
+
+In this example the Stripe.js api version is V2. You can find the reference [here](https://stripe.com/docs/stripe.js/v2)
+
 
 ### Run in local
 
