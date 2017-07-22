@@ -7,6 +7,7 @@ $form = $('#checkout-form');
 
 $form.submit(function(event) { //Fetch value from checkout form, after fetching data run stripeResponseHandler
   $form.find('button').prop('disabled', true);
+  $('#charge-error').addClass('hidden');
   Stripe.card.createToken({
     number: $('#card-number').val(),
     cvc: $('#card-cvc').val(),
@@ -20,6 +21,7 @@ $form.submit(function(event) { //Fetch value from checkout form, after fetching 
 function stripeResponseHandler(status, response) {
   if (response.error) {
     $('#charge-error').text(response.error.message);
+    $('#charge-error').removeClass('hidden');
     $form.find('button').prop('disabled', false);
   } else {
     var token = response.id;
