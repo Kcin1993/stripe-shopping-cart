@@ -22,4 +22,14 @@ In this example the Stripe.js api version is V2. You can find the reference [her
 
 ### Run in local
 
+use local mongodb
+```
+sudo ./mongod
+./mongo
+```
+
+```
+npm start
+```
+
 

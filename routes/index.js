@@ -3,6 +3,7 @@ var router = express.Router();
 
 var Cart = require('../models/cart');
 var Product = require('../models/product');
+var Order = require('../models/order');
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
@@ -72,9 +73,19 @@ router.post('/checkout', function(req, res, next) {
       req.flash('error', err.message);
       return res.redirect('/checkout');
     }
-    req.flash('success', '交易成功');
-    req.session.cart = null; //Clean the cart in session after trade scccess
-    res.redirect('/');
+    var order = new Order({
+      user: req.user, //passport save the user
+      cart: cart, //var cart = new Cart(req.session.cart)
+      address: req.body.address,
+      name: req.body.name,
+      paymentId: charge.id, //stripe
+    })
+    order.save(function(err, result) { //save to mongodb with a callback
+      console.log(err);
+      req.flash('success', '交易成功');
+      req.session.cart = null; //Clean the cart in session after trade scccess
+      res.redirect('/');
+    });
   });
 });
 
