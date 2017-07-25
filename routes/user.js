@@ -25,10 +25,17 @@ router.get('/signup', function (req, res, next) {
 });
 
 router.post('/signup', passport.authenticate('local.signup', {
-    successRedirect: '/user/profile',
     failureRedirect: '/user/signup',
-    failureFlash: true
-}));
+    failureFlash: true,
+}), function(req, res, next){ //If signup success redirect to current page
+    if(req.session.oldUrl) {
+        var oldUrl = req.session.oldUrl; //save oldUrl first and then clean the session.oldUrl
+        req.session.oldUrl = null;
+        res.redirect(oldUrl);
+    } else {
+        req.redirect('/user/profile');
+    }
+});
 
 router.get('/signin', function (req, res, next) {
     var messages = req.flash('error');
@@ -36,10 +43,17 @@ router.get('/signin', function (req, res, next) {
 });
 
 router.post('/signin', passport.authenticate('local.signin', {
-    successRedirect: '/user/profile',
     failureRedirect: '/user/signin',
     failureFlash: true
-}));
+}), function(req, res, next){ //If signin success redirect to current page
+    if(req.session.oldUrl) {
+        var oldUrl = req.session.oldUrl; //save oldUrl first and then clean the session.oldUrl
+        req.session.oldUrl = null;
+        res.redirect(oldUrl);
+    } else {
+        req.redirect('/user/profile');
+    }
+});
 
 module.exports = router;
 

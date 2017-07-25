@@ -5,14 +5,29 @@ Encountering passport package issue([Missing credentials](https://www.youtube.co
 You can follow this video about building a shopping cart with Express & Stripe payment.
 
 
-### Seed Data
+### Data base
 
 The mongodb use the db name: shopping and the db port 27017(default).
 
 If you want to import the seed data to the local mongodb.
 ```
-//in root folder
+//Run and connect to mongodb. In root folder
 cd seed && node product-seeder.js
+```
+
+If you want to query data
+```
+//When mongo db is connect use shopping db
+use shopping
+
+//Find user
+db.users.find()
+
+//Find order
+db.orders.find()
+
+//Find product
+db.products.find()
 ```
 
 ### Stripe
@@ -24,11 +39,13 @@ In this example the Stripe.js api version is V2. You can find the reference [her
 
 use local mongodb
 ```
+//Run and connect to mongodb
 sudo ./mongod
 ./mongo
 ```
 
 ```
+//Start the server
 npm start
 ```
 

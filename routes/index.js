@@ -45,7 +45,7 @@ router.get('/shopping-cart', function(req, res, next) {
 
 
 /* Get Check page */
-router.get('/checkout', function(req, res, next) {
+router.get('/checkout', isLoggedIn, function(req, res, next) {
   if(!req.session.cart) {
     return res.redirect('/shopping-cart');
   }
@@ -55,7 +55,7 @@ router.get('/checkout', function(req, res, next) {
 })
 
 /* Post Check page */
-router.post('/checkout', function(req, res, next) {
+router.post('/checkout', isLoggedIn, function(req, res, next) {
   if(!req.session.cart) {
     return res.redirect('/shopping-cart');
   }
@@ -90,3 +90,12 @@ router.post('/checkout', function(req, res, next) {
 });
 
 module.exports = router;
+
+
+function isLoggedIn(req, res, next) { //reuse this function from user.js to control router when user not login redirect to signin page. Assign this function to checkout page router
+    if (req.isAuthenticated()) {
+        return next();
+    }
+    req.session.oldUrl = req.url; //keep the checkout outpage if not login
+    res.redirect('/user/signin');
+}
