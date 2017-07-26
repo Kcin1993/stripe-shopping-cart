@@ -13,8 +13,10 @@
                                 調整 <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu">
-                                <li><a href="#">數量減1</a></li>
-                                <li><a href="#">全部移除</a></li>
+                                <li><a href="/reduce/{{this.item._id}}">數量減1</a></li>
+                                {{!--for the underscore id it means the default mongodb id. More explain at following link--}}
+                                {{!--https://stackoverflow.com/questions/15480934/why-is-there-an-underscore-in-front-of-the-mongodb-document-id--}}
+                                <li><a href="/remove/{{this.item._id}}">全部移除</a></li>
                             </ul>
                         </div>
                     </li>

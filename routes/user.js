@@ -3,11 +3,24 @@ var router = express.Router();
 var csrf = require('csurf');
 var passport = require('passport');
 
+var Order = require('../models/order'); //import schma for order use in profile page
+var Cart = require('../models/cart'); //Loop the cart items if user login
+
 var csrfProtection = csrf();
 router.use(csrfProtection);
 
 router.get('/profile', isLoggedIn, function (req, res, next) {
-    res.render('user/profile');
+    Order.find({user: req.user}, function(err, orders) { //Use current user to fliter and match db data
+        if(err) {
+            return res.write('Error! In user data');
+        }
+        var cart;
+        orders.forEach(function(order){
+            cart = new Cart(order.cart);
+            order.items = cart.generateArray();
+        });
+        res.render('user/profile', {orders: orders});
+    });
 });
 
 router.get('/logout', isLoggedIn, function (req, res, next) {

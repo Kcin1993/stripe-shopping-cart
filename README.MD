@@ -50,3 +50,13 @@ npm start
 ```
 
 
+### Run online
+
+1. mLab
+* Create a mLab account
+* Use free plan and choose a cloud provider
+* Add a database user and use account and password to access db
+
+My test Mongodb url: `mongodb://kcinlab:labtest@ds034677.mlab.com:34677/shopping`
+
+

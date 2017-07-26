@@ -1,1 +1,25 @@
-<h1>User Profile</h1>
+
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <h1>我的帳戶</h1>
+        <hr>
+        <h2>我的訂單</h2>
+        {{# each orders }}
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <ul class="list-group">
+                        {{# each this.items }}
+                            <li class="list-group-item">
+                                <span class="badge">單價：{{ this.price }}</span>
+                                商品名稱：{{ this.item.title }} | 數量：{{ this.qty }}
+                            </li>
+                        {{/each}}
+                    </ul>
+                </div>
+                <div class="panel-footer">
+                    <strong>總金額: ${{ this.cart.totalPrice }}</strong>
+                </div>
+            </div>
+        {{/each}}
+    </div>
+</div>
