@@ -89,23 +89,23 @@ router.post('/checkout', isLoggedIn, function(req, res, next) {
     source: req.body.stripeToken, // the stripe we create in the checkout.js
     description: "Stripe charge example"
   }, function(err, charge) {
-    if(err) {
-      req.flash('error', err.message);
-      return res.redirect('/checkout');
-    }
-    var order = new Order({
-      user: req.user, //passport save the user
-      cart: cart, //var cart = new Cart(req.session.cart)
-      address: req.body.address,
-      name: req.body.name,
-      paymentId: charge.id, //stripe
-    })
-    order.save(function(err, result) { //save to mongodb with a callback
-      console.log(err);
-      req.flash('success', '交易成功');
-      req.session.cart = null; //Clean the cart in session after trade scccess
-      res.redirect('/');
-    });
+      if(err) {
+        req.flash('error', err.message);
+        return res.redirect('/checkout');
+      }
+      var order = new Order({
+        user: req.user, //passport save the user
+        cart: cart, //var cart = new Cart(req.session.cart)
+        address: req.body.address,
+        name: req.body.name,
+        paymentId: charge.id, //stripe
+      })
+      order.save(function(err, result) { //save to mongodb with a callback
+        console.log(err);
+        req.flash('success', '交易成功');
+        req.session.cart = null; //Clean the cart in session after trade scccess
+        res.redirect('/');
+      });
   });
 });
 

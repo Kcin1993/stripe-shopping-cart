@@ -17,6 +17,9 @@ var userRoutes = require('./routes/user');
 
 var app = express();
 
+//Use the mongoose
+// mongoose.connect('mongodb://kcinlab:labtest@ds034677.mlab.com:34677/shopping');
+//Use the local
 mongoose.connect('localhost:27017/shopping');
 require('./config/passport');
 
