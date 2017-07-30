@@ -58,5 +58,14 @@ npm start
 * Add a database user and use account and password to access db
 
 My test Mongodb url: `mongodb://kcinlab:labtest@ds034677.mlab.com:34677/shopping`
+Change mLab url to the moongoose connect
 
+2. heroku
+
+Create a heroku app
+
+```
+$ heroku create
+```
+and go to the heroku app dashboard connect the to github project. Herolu will update after the certain branch is update.
 
