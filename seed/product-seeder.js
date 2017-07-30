@@ -2,38 +2,39 @@ var Product = require('../models/product');
 
 var mongoose = require('mongoose');
 
-mongoose.connect('localhost:27017/shopping');
+mongoose.connect('mongodb://kcinlab:labtest@ds034677.mlab.com:34677/shopping'); //Use the mongoose
+// mongoose.connect('localhost:27017/shopping'); //Use the local
 
 var products = [
     new Product({
-        imagePath: 'https://upload.wikimedia.org/wikipedia/en/5/5e/Gothiccover.png',
-        title: 'Gothic Video Game',
-        description: 'Awesome Game!!!!',
+        imagePath: 'https://sdl-stickershop.line.naver.jp/stickershop/v1/sticker/1430100/android/sticker.png;compress=true',
+        title: '小雞人跳躍',
+        description: '小雞人跳躍10元',
         price: 10
     }),
     new Product({
-        imagePath: 'http://eu.blizzard.com/static/_images/games/wow/wallpapers/wall2/wall2-1440x900.jpg',
-        title: 'World of Warcraft Video Game',
-        description: 'Also awesome? But of course it was better in vanilla ...',
+        imagePath: 'https://sdl-stickershop.line.naver.jp/stickershop/v1/sticker/1430118/android/sticker.png;compress=true',
+        title: '小雞人睡覺',
+        description: '小雞人睡覺20元',
         price: 20
     }),
     new Product({
-        imagePath: 'https://support.activision.com/servlet/servlet.FileDownload?file=00PU000000Rq6tz',
-        title: 'Call of Duty Video Game',
-        description: 'Meh ... nah, it\'s okay I guess',
+        imagePath: 'https://sdl-stickershop.line.naver.jp/stickershop/v1/sticker/1430134/android/sticker.png;compress=true',
+        title: '小小雞人拍桌',
+        description: '小小雞人拍桌40元',
         price: 40
     }),
     new Product({
-        imagePath: 'https://pmcdeadline2.files.wordpress.com/2014/02/minecraft__140227211000.jpg',
-        title: 'Minecraft Video Game',
-        description: 'Now that is super awesome!',
-        price: 15
+        imagePath: 'https://sdl-stickershop.line.naver.jp/stickershop/v1/sticker/1430137/android/sticker.png;compress=true',
+        title: '小雞人保母',
+        description: '小雞人保母50元',
+        price: 50
     }),
     new Product({
-        imagePath: 'https://d1r7xvmnymv7kg.cloudfront.net/sites_products/darksouls3/assets/img/DARKSOUL_facebook_mini.jpg',
-        title: 'Dark Souls 3 Video Game',
-        description: 'I died!',
-        price: 50
+        imagePath: 'https://sdl-stickershop.line.naver.jp/stickershop/v1/sticker/4873539/android/sticker.png;compress=true',
+        title: '小雞人蛻變',
+        description: '小雞人蛻變60元',
+        price: 60
     })
 ];
 
